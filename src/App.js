@@ -1,24 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
+import {Layout} from "antd";
+import {Header} from "antd/es/layout/layout";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import React from "react";
+import LandingPage from "./pages/LandingPage";
+import NewJobPage from "./pages/NewJobPage";
+import JobDetailsPage from "./pages/JobDetailsPage";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div>
+        <Layout style={{height: '100%'}}>
+          <Header style={{ height: "5vh", color: 'white', fontSize: 25}}>
+            Sizif
+          </Header>
+          <Layout style={{ backgroundColor: 'white', heigth: '75%'}}>
+            <BrowserRouter>
+              <Routes>
+                <Route path="/" exact element={<LandingPage />} />
+                <Route path="/new-job" exact element={< NewJobPage/>}/>
+                <Route path="/job/:id" element={<JobDetailsPage />} />
+              </Routes>
+            </BrowserRouter>
+          </Layout>
+        </Layout>
+      </div>
   );
 }
 
