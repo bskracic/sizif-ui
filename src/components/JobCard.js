@@ -1,39 +1,26 @@
 import React from 'react';
-import {Avatar, Card} from "antd";
+import {Avatar, Button, Card} from "antd";
 import {useNavigate} from "react-router-dom";
 import Meta from "antd/es/card/Meta";
+import {toDate, toTime} from "../utils/datetime-converter";
 
 function JobCard(props) {
 
     const { job } = props;
 
     const navigate = useNavigate();
-    const openDetails = () => {
+    const openRuns = () => {
         navigate(`/job/${job.id}`)
     }
 
     return (
         <div>
-            <Card style={{fontSize: '16px', margin: '10px'}} hoverable type="inner" onClick={openDetails}>
+            <Card  title={job.name} style={{fontSize: '16px', margin: '10px'}} hoverable type="inner" onClick={openRuns}>
                 <Meta
-                    avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
-                    title={job.name}
-                    description={job.type}
+                    avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />} description={job.type}
                 />
-                Last run: {job.last_run}
+                Last run: {`${toDate(job.last_run)} | ${toTime(job.last_run)}`}
             </Card>
-            {/*<Card*/}
-            {/*    hoverable*/}
-            {/*    style={{*/}
-            {/*        width: '95%',*/}
-            {/*        margin: '7px',*/}
-            {/*        fontSize: '20px'*/}
-            {/*    }}*/}
-
-            {/*    onClick={openDetails}*/}
-            {/*>*/}
-            {/*    {job.name} | {job.type} | {job.last_run}*/}
-            {/*</Card>*/}
         </div>
     );
 }

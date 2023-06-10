@@ -1,12 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {useNavigate} from "react-router-dom";
 import rest from "../rest/job";
 import JobCard from "../components/JobCard";
+import {Card} from "antd";
 
 function LandingPage(props) {
-
-    const navigate = useNavigate();
-
     const [jobs, setJobs] = useState([])
 
     useEffect(() => {
@@ -25,12 +22,12 @@ function LandingPage(props) {
 
 
     return (
-        <div style={{display: 'flex', justifyContent: 'center', alignContent: 'center', padding: '10px'}}>
-            <div style={{flexDirection: 'column', alignContent: 'center', width: '100%'}}>
+        <div>
+            <Card title="Jobs">
                 {jobs.map((job, index) => (
                     <JobCard  job={job} />
                 ))}
-            </div>
+            </Card>
         </div>
     );
 }
